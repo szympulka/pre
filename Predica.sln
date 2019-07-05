@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Predica.Web", "Predica.Web\Predica.Web.csproj", "{4CCC1296-89E4-4843-9FA8-D7016E8FD86C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Predica.Services", "Predica.Services\Predica.Services.csproj", "{41518B10-49B3-445E-80C0-7AE5BD2F0A42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Predica.ViewModel", "Predica.ViewModel\Predica.ViewModel.csproj", "{E6C4E8B2-568D-4201-AEF7-FD6448EBA749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Predica.CommonServices", "Predica.CommonServices\Predica.CommonServices.csproj", "{6010BDB2-F1B1-41C3-B172-305D2A4DA350}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure", "Azure", "{FB498957-2728-4A61-A8CA-0E5BD86893F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.Storage", "Azure\Azure.Storage\Azure.Storage.csproj", "{F60EACBD-841C-4C96-AA67-DBDE700AB08B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.Sendgrid", "Azure\Azure.Sendgrid\Azure.Sendgrid.csproj", "{E696A797-746D-4EFE-96DC-5C6EFA5AC6D6}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ARMDeploy", "Azure\ARMDeploy\ARMDeploy.deployproj", "{6B2317B6-30FB-4A1B-958A-950EE3D14051}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CCC1296-89E4-4843-9FA8-D7016E8FD86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCC1296-89E4-4843-9FA8-D7016E8FD86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCC1296-89E4-4843-9FA8-D7016E8FD86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCC1296-89E4-4843-9FA8-D7016E8FD86C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41518B10-49B3-445E-80C0-7AE5BD2F0A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41518B10-49B3-445E-80C0-7AE5BD2F0A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41518B10-49B3-445E-80C0-7AE5BD2F0A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41518B10-49B3-445E-80C0-7AE5BD2F0A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6C4E8B2-568D-4201-AEF7-FD6448EBA749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C4E8B2-568D-4201-AEF7-FD6448EBA749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C4E8B2-568D-4201-AEF7-FD6448EBA749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C4E8B2-568D-4201-AEF7-FD6448EBA749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6010BDB2-F1B1-41C3-B172-305D2A4DA350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6010BDB2-F1B1-41C3-B172-305D2A4DA350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6010BDB2-F1B1-41C3-B172-305D2A4DA350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6010BDB2-F1B1-41C3-B172-305D2A4DA350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F60EACBD-841C-4C96-AA67-DBDE700AB08B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F60EACBD-841C-4C96-AA67-DBDE700AB08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F60EACBD-841C-4C96-AA67-DBDE700AB08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F60EACBD-841C-4C96-AA67-DBDE700AB08B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E696A797-746D-4EFE-96DC-5C6EFA5AC6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E696A797-746D-4EFE-96DC-5C6EFA5AC6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E696A797-746D-4EFE-96DC-5C6EFA5AC6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E696A797-746D-4EFE-96DC-5C6EFA5AC6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2317B6-30FB-4A1B-958A-950EE3D14051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2317B6-30FB-4A1B-958A-950EE3D14051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2317B6-30FB-4A1B-958A-950EE3D14051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2317B6-30FB-4A1B-958A-950EE3D14051}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F60EACBD-841C-4C96-AA67-DBDE700AB08B} = {FB498957-2728-4A61-A8CA-0E5BD86893F2}
+		{E696A797-746D-4EFE-96DC-5C6EFA5AC6D6} = {FB498957-2728-4A61-A8CA-0E5BD86893F2}
+		{6B2317B6-30FB-4A1B-958A-950EE3D14051} = {FB498957-2728-4A61-A8CA-0E5BD86893F2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C1DA900-4578-45C9-85D1-9DE1EC230838}
+	EndGlobalSection
+EndGlobal

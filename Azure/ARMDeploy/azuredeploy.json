@@ -1,0 +1,162 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ServicePlanName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ServicePlanSkuName": {
+      "type": "string",
+      "defaultValue": "F1",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "metadata": {
+        "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+      }
+    },
+    "WebName": {
+      "type": "string"
+    },
+    "StorageType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    },
+    "StorageName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "name": "[parameters('StorageName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-01-01",
+      "sku": {
+        "name": "[parameters('StorageType')]"
+      },
+      "dependsOn": [],
+      "tags": {
+        "displayName": "Storage"
+      },
+      "kind": "Storage"
+    },
+    {
+      "name": "[parameters('ServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-08-01",
+      "sku": {
+        "name": "[parameters('ServicePlanSkuName')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageName'))]"
+      ],
+      "tags": {
+        "displayName": "ServicePlan"
+      },
+      "properties": {
+        "name": "[parameters('ServicePlanName')]",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "name": "[parameters('WebName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-08-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('ServicePlanName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageName'))]"
+      ],
+      "tags": {
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', parameters('ServicePlanName')))]": "Resource",
+        "displayName": "Web"
+      },
+      "properties": {
+        "name": "[parameters('WebName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('ServicePlanName'))]",
+        "appSettings": [
+          {
+            "name": "Role:Admin",
+            "value": "Admin"
+          },
+          {
+            "name": "Role:User",
+            "value": "User"
+          },
+          {
+            "name": "Sendgrid:Key",
+            "value": ""
+          },
+          {
+            "name": "Sendgrid:AdminMail",
+            "value": "dzien@dobry.pl"
+          },
+          {
+            "name": "AzureStorage:Key",
+            "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
+          },
+          {
+            "name": "AzureStorage:Name",
+            "value": "parameters('StorageName')"
+          },
+          {
+            "name": "AzureStorage:TravelTableName",
+            "value": "TravelTable"
+          },
+          {
+            "name": "AzureStorage:DefaultConnection",
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('StorageName'),';AccountKey=',listKeys(resourceId('37d3d5c1-aafa-4735-9542-1e8ddf125c07','CloudVision','Microsoft.Storage/storageAccounts', parameters('StorageName')), '2015-05-01-preview').key1)]"
+          }
+        ]
+      },
+      "resources": [
+        {
+          "name": "appsettings",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('WebName'))]"
+          ],
+          "tags": {
+            "displayName": "app"
+          },
+          "properties": {
+            "Role:Admin": "Admin",
+            "Role:User": "User",
+            "Sendgrid:Key": "value",
+            "Sendgrid:AdminMail": "dzien@dobry.pl",
+            "AzureStorage:Key": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]",
+            "AzureStorage:Name": "parameters('StorageName')",
+            "AzureStorage:TravelTableName": "TravelTable",
+            "AzureStorage:DefaultConnection": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('StorageName'),';AccountKey=',listKeys(resourceId('37d3d5c1-aafa-4735-9542-1e8ddf125c07','CloudVision','Microsoft.Storage/storageAccounts', parameters('StorageName')), '2015-05-01-preview').key1)]"
+
+          }
+        }
+      ]
+    },
+  ],
+  "outputs": {}
+}
